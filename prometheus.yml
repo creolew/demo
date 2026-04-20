@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s # Thu thập metrics mỗi 15 giây
+
+scrape_configs:
+  - job_name: "spring-boot-app"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: [ "app:8080" ] # Tên service trong Docker network
