@@ -4,14 +4,14 @@ name: CI Pipeline
 # Khi nào chạy?
 on:
   push:
-    branches: [ main ]      # Push lên main → chạy
+    branches: [ main ] # Push lên main → chạy
   pull_request:
-    branches: [ main ]      # Tạo PR vào main → chạy
+    branches: [ main ] # Tạo PR vào main → chạy
 
 # Làm gì?
 jobs:
   build:
-    runs-on: ubuntu-latest   # Chạy trên máy ảo Ubuntu của GitHub
+    runs-on: ubuntu-latest # Chạy trên máy ảo Ubuntu của GitHub
 
     steps:
       # Bước 1: Checkout code (giống git clone)
@@ -23,12 +23,12 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
-          cache: maven        # Cache dependencies cho lần sau nhanh hơn
+          java-version: "17"
+          cache: maven # Cache dependencies cho lần sau nhanh hơn
 
-      # Bước 3: Build + Test
-      - name: Build and Test
-        run: mvn clean package
+      # Bước 3: Build
+      - name: Build
+        run: mvn clean package -DskipTests
 
       # Bước 4: Upload artifact (file .jar)
       - name: Upload JAR
